@@ -35,7 +35,10 @@ export function UploadForm({
         body: formData,
       });
 
-      const payload = await response.json();
+      const contentType = response.headers.get("content-type") ?? "";
+      const payload = contentType.includes("application/json")
+        ? await response.json()
+        : { error: (await response.text()) || response.statusText };
 
       if (!response.ok) {
         throw new Error(payload.error || "Upload failed.");
@@ -44,7 +47,11 @@ export function UploadForm({
       setUploadedFiles(payload.files ?? []);
       setStatus(`Uploaded ${payload.files?.length ?? 0} photo(s).`);
     } catch (error) {
-      setStatus(error instanceof Error ? error.message : "Zapis zakończony niepowodzeniem. Opierdol Pana Młodego, że nie działa.");
+      setStatus(
+        error instanceof Error
+          ? error.message
+          : "Zapis zakończony niepowodzeniem. Spróbuj ponownie lub sprawdź limit przesyłania."
+      );
     } finally {
       setIsUploading(false);
     }
