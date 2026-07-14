@@ -36,22 +36,27 @@ export function UploadForm({
       });
 
       const contentType = response.headers.get("content-type") ?? "";
-      const payload = contentType.includes("application/json")
+      const rawBody = contentType.includes("application/json")
         ? await response.json()
-        : { error: (await response.text()) || response.statusText };
+        : await response.text();
 
       if (!response.ok) {
-        throw new Error(payload.error || "Upload failed.");
+        const errorMessage =
+          typeof rawBody === "string"
+            ? rawBody.trim() || response.statusText
+            : rawBody?.error || JSON.stringify(rawBody);
+        throw new Error(`Upload failed (${response.status}): ${errorMessage}`);
       }
 
+      const payload = typeof rawBody === "string" ? { error: rawBody } : rawBody;
       setUploadedFiles(payload.files ?? []);
       setStatus(`Uploaded ${payload.files?.length ?? 0} photo(s).`);
     } catch (error) {
-      setStatus(
-        error instanceof Error
-          ? error.message
-          : "Zapis zakończony niepowodzeniem. Spróbuj ponownie lub sprawdź limit przesyłania."
-      );
+      if (error instanceof Error) {
+        setStatus(error.message);
+      } else {
+        setStatus("Zapis zakończony niepowodzeniem. Spróbuj ponownie lub sprawdź limit przesyłania.");
+      }
     } finally {
       setIsUploading(false);
     }
