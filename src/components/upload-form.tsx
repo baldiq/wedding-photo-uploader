@@ -80,10 +80,10 @@ export function UploadForm({
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 rounded-[32px] border border-white/60 bg-white/80 p-4 shadow-[0_22px_70px_rgba(15,23,42,0.28)] ring-1 ring-slate-200/70 backdrop-blur-xl sm:gap-6 sm:p-8">
-      <div className="space-y-2 text-center sm:text-left">
+      <div className="space-y-2 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-rose-500 sm:text-sm">Wesele Patrycji i Piotra</p>
         <h1 className="text-[1.7rem] font-semibold leading-tight text-slate-900 sm:text-3xl sm:text-4xl">{title}</h1>
-        <p className="text-base leading-6 text-slate-700 sm:max-w-2xl sm:text-lg">{description}</p>
+        <p className="mx-auto text-base leading-6 text-slate-700 sm:max-w-2xl sm:text-lg">{description}</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4 rounded-[24px] border border-slate-200/80 bg-slate-50/85 p-4 shadow-inner shadow-slate-200/60 sm:p-6">
