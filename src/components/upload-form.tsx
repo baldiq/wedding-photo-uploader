@@ -85,13 +85,12 @@ export function UploadForm({
         <div className="space-y-1 text-white">
           <p className="text-sm font-semibold sm:text-lg">📸 Pokaż, jak bawisz się na naszym weselu!</p>
           <p className="text-xs leading-5 text-slate-100/90 sm:text-sm">Wrzuć tutaj swoje zdjęcia lub filmy, a my zrobimy z nich wspólny weselny kolaż. ❤️</p>
-          <p className="text-xs font-medium text-rose-100/95 sm:text-sm">Ty wrzucasz, my składamy! 😎</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-3 rounded-[20px] border border-white/15 bg-white/5 p-3 sm:p-4">
-        <label className="flex cursor-pointer items-center justify-center rounded-[16px] border border-dashed border-rose-200/80 bg-gradient-to-r from-rose-500/20 via-white/10 to-rose-500/20 px-4 py-5 text-center transition duration-200 hover:border-rose-200 hover:bg-white/12 sm:px-6 sm:py-6">
-          <span className="text-sm font-semibold tracking-[0.12em] text-white uppercase sm:text-base">Dodaj zdjęcia</span>
+        <label className="flex cursor-pointer items-center justify-center rounded-[14px] border border-dashed border-rose-200/80 bg-gradient-to-r from-rose-500/20 via-white/10 to-rose-500/20 px-3 py-3 text-center transition duration-200 hover:border-rose-200 hover:bg-white/12 sm:px-4 sm:py-4">
+          <span className="text-[11px] font-semibold tracking-[0.12em] text-white uppercase sm:text-sm">Dodaj zdjęcia</span>
           <input
             className="sr-only"
             type="file"
